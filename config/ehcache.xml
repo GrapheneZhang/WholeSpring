@@ -1,0 +1,64 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="ehcache.xsd">
+	
+	<diskStore path="java.io.tmpdir"/>
+	
+	<defaultCache maxElementsInMemory="10000"
+    				maxElementsOnDisk="100000" 
+    				eternal="false"
+    				overflowToDisk="false"
+    				diskPersistent="false"  
+    				timeToIdleSeconds="86400" 
+    				timeToLiveSeconds="86400"
+    				memoryStoreEvictionPolicy="LFU"
+    				/>
+    				
+	<cache name="dictionaryCache"
+	        maxElementsInMemory="10000"
+	        maxElementsOnDisk="100000" 
+	        eternal="true"
+	        overflowToDisk="false"
+	        memoryStoreEvictionPolicy="LFU" />
+	        
+	       
+        
+    				<!-- overflowToDisk="false" -->
+    				<!-- overflowToDisk="false" -->
+        			<!-- <diskStore path="java.io.tmpdir E:/cachetmpdir"/> -->
+<!-- 
+	diskStore ：指定数据存储位置，可指定磁盘中的文件夹位置  
+		 Sets the path to the directory where cache .data files are created.
+
+         If the path is a Java System Property it is replaced by its value in the running VM.
+
+         The following properties are translated:
+         user.home - User's home directory
+         user.dir - User's current working directory
+         java.io.tmpdir - Default temp file path 
+    defaultCache ： 默认的管理策略 
+    
+    必须属性：
+    name： Cache的名称，必须是唯一的(ehcache会把这个cache放到HashMap里)。
+	maxElementsInMemory：缓存中允许创建的最大对象数
+    maxElementsOnDisk：在磁盘上缓存的element的最大数目，默认值为0，表示不限制。
+	eternal：缓存中对象是否为永久的，如果是，超时设置将被忽略，对象从不过期；
+				如果为false那么还要根据timeToIdleSeconds，timeToLiveSeconds判断。
+	overflowToDisk：内存不足时，是否启用磁盘缓存。
+	
+    可选属性：
+    timeToIdleSeconds：(多长时间没访问)缓存数据的钝化时间，也就是在一个元素消亡之前，两次访问时间的最大时间间隔值，
+						这只能在元素不是永久驻留时有效，如果该值是 0 就意味着元素可以停顿无穷长的时间。
+	timeToLiveSeconds：(存在多长时间)缓存数据的生存时间，也就是一个元素从构建到消亡的最大时间间隔值，
+						这只能在元素不是永久驻留时有效，如果该值是0就意味着元素可以停顿无穷长的时间。
+	diskPersistent： 是否在磁盘上持久化。指重启jvm后，数据是否有效。默认为false。 
+	diskExpiryThreadIntervalSeconds： 对象检测线程运行时间间隔。标识对象状态的线程多长时间运行一次。 
+	diskSpoolBufferSizeMB： DiskStore使用的磁盘大小，默认值30MB。每个cache使用各自的DiskStore。
+	
+	memoryStoreEvictionPolicy：缓存满了之后的淘汰算法。LRU和FIFO算法这里就不做介绍。LFU算法直接淘汰使用比较少的对象，在内存保留的都是一些经常访问的对象。对于大部分网站项目，该算法比较适用。
+								FIFO:first in first out
+								LFU:Less Frequently used
+								LRU:Least Recently Used(最近最少使用). (ehcache 默认值).缓存的元素有一个时间戳，当缓存容量满了，而又需要腾出地方来缓存新的元素的时候，那么现有缓存元素中时间戳离当前时间最远的元素将被清出缓存。 
+	
+	如果应用需要配置多个不同命名并采用不同参数的Cache，可以相应修改配置文件，增加需要的Cache配置即可。
+ -->
+ </ehcache>
